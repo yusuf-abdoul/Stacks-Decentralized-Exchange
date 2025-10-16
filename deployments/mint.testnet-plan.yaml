@@ -1,0 +1,42 @@
+---
+id: 1
+name: Mint tokens for testing
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-call:
+            contract-id: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token
+            method: mint
+            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+            parameters:
+              - u500000000  # 500 tokens (6 decimals)
+              - 'ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM'
+            cost: 3000
+        - contract-call:
+            contract-id: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-2
+            method: mint
+            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+            parameters:
+              - u500000000
+              - 'ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM'
+            cost: 3000
+        - contract-call:
+            contract-id: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-3
+            method: mint
+            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+            parameters:
+              - u500000000
+              - 'ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM'
+            cost: 3000
+        - contract-call:
+            contract-id: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-4
+            method: mint
+            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+            parameters:
+              - u500000000
+              - 'ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM'
+            cost: 3000
+      epoch: "3.2"

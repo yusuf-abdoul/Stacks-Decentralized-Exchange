@@ -58,6 +58,7 @@ genesis:
     - pox-4
     - signers
     - signers-voting
+    - costs-4
 plan:
   batches:
     - id: 0
@@ -65,37 +66,34 @@ plan:
         - emulated-contract-publish:
             contract-name: sip-010-trait-ft-standard
             emulated-sender: SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE
-            path: "./.cache/requirements/SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
+            path: ".\\.cache\\requirements\\SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
             clarity-version: 1
-      epoch: "2.1"
+      epoch: "2.0"
     - id: 1
       transactions:
         - emulated-contract-publish:
-            contract-name: mock-token-2
+            contract-name: amm-v2
             emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-            path: contracts/mock-token.clar
-            clarity-version: 2
-        - emulated-contract-publish:
-            contract-name: mock-token-3
-            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-            path: contracts/mock-token.clar
-            clarity-version: 2
-        - emulated-contract-publish:
-            contract-name: mock-token-4
-            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-            path: contracts/mock-token.clar
-            clarity-version: 2
-      epoch: "2.5"
-    - id: 2
-      transactions:
-        - emulated-contract-publish:
-            contract-name: amm
-            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-            path: contracts/amm.clar
+            path: "contracts\\amm.clar"
             clarity-version: 3
         - emulated-contract-publish:
             contract-name: mock-token
             emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-            path: contracts/mock-token.clar
+            path: "contracts\\mock-token.clar"
+            clarity-version: 3
+        - emulated-contract-publish:
+            contract-name: mock-token-2
+            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            path: "contracts\\mock-token.clar"
+            clarity-version: 3
+        - emulated-contract-publish:
+            contract-name: mock-token-3
+            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            path: "contracts\\mock-token.clar"
+            clarity-version: 3
+        - emulated-contract-publish:
+            contract-name: mock-token-4
+            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            path: "contracts\\mock-token.clar"
             clarity-version: 3
       epoch: "3.2"

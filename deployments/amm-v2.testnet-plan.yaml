@@ -1,0 +1,25 @@
+---
+id: 2
+name: Deploy amm-v2 with fixed transfers
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        # If the SIP-010 trait requirement is not yet published, uncomment the block below.
+        # - requirement-publish:
+        #     contract-id: SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard
+        #     remap-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+        #     remap-principals:
+        #       SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+        #     cost: 8400
+        #     path: "./.cache/requirements/SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
+        #     clarity-version: 1
+        - contract-publish:
+            contract-name: amm-v2
+            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+            path: contracts/amm.clar
+            cost: 20000
+            clarity-version: 3
+      epoch: "3.2"

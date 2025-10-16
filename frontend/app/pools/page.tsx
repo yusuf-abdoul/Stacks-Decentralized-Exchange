@@ -4,6 +4,8 @@ import { PoolsList } from "@/components/pools";
 import { RemoveLiquidity } from "@/components/remove-liquidity";
 import { getAllPools } from "@/lib/amm";
 
+export const dynamic = "force-dynamic";
+
 export default async function Pools() {
   let allPools = [];
   let error = null;
@@ -16,7 +18,7 @@ export default async function Pools() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col gap-8 p-24">
+    <main className="flex min-h-screen flex-col gap-8 p-4 md:p-24">
       <h1 className="text-3xl font-bold">Pools</h1>
 
       {error ? (
@@ -38,7 +40,7 @@ export default async function Pools() {
       )}
 
       <hr />
-      <div className="flex justify-center gap-8">
+      <div className="flex justify-center gap-8 flex-col md:flex-row">
         <CreatePool />
         {allPools.length > 0 ? (
           <>

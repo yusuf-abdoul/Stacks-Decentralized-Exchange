@@ -175,8 +175,10 @@
         (asserts! (> new-liquidity u0) ERR_INSUFFICIENT_LIQUIDITY_MINTED)
 
         ;; transfer tokens from user to pool
-        (try! (as-contract (contract-call? token-0 transfer amount-0 sender THIS_CONTRACT none)))
-        (try! (as-contract (contract-call? token-1 transfer amount-1 sender THIS_CONTRACT none)))
+        ;; Important: for transfers FROM the user, do NOT use as-contract;
+        ;; the token's transfer gate expects tx-sender == sender (the user).
+        (try! (contract-call? token-0 transfer amount-0 sender THIS_CONTRACT none))
+        (try! (contract-call? token-1 transfer amount-1 sender THIS_CONTRACT none))
 
         ;; update the `positions` map with the new liquidity of the user (pre existing liquidity + new liquidity)
         (map-set positions {
@@ -343,10 +345,8 @@
             ERR_INSUFFICIENT_LIQUIDITY_FOR_SWAP
         )
 
-        ;; transfer input token from user to pool
-        (try! (as-contract (contract-call? input-token transfer input-amount sender THIS_CONTRACT
-            none
-        )))
+        ;; transfer input token from user to pool (must be called by the user)
+        (try! (contract-call? input-token transfer input-amount sender THIS_CONTRACT none))
         ;; transfer output token from pool to user
         (try! (as-contract (contract-call? output-token transfer output-amount-sub-fees
             THIS_CONTRACT sender none
@@ -510,5 +510,3 @@
 )
 ;;
 
-;; private functions
-;;

@@ -13,7 +13,7 @@ export function Navbar() {
       </Link>
 
       <div className="flex items-center gap-8">
-        <Link href="/" className="text-gray-300 hover:text-gray-50">
+        <Link href="/swap" className="text-gray-300 hover:text-gray-50">
           Swap
         </Link>
         <Link href="/pools" className="text-gray-300 hover:text-gray-50">
