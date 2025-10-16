@@ -15,13 +15,7 @@
 (define-constant contract-owner tx-sender)
 (define-constant err-owner-only (err u100))
 (define-constant err-not-token-owner (err u101))
-;;
 
-;; data vars
-;;
-
-;; data maps
-;;
 
 ;; public functions
 (define-public (transfer
@@ -73,7 +67,3 @@
 	(ok none)
 )
 
-;;
-
-;; private functions
-;;
