@@ -9,15 +9,13 @@ export interface SwapProps {
 }
 
 export function Swap({ pools }: SwapProps) {
-  const { handleSwap, handleMint, readTokenBalance, readTokenSupply, userData } = useStacks();
+  const { handleSwap, handleMint, readTokenBalance, userData } = useStacks();
   const [fromToken, setFromToken] = useState<string>(pools[0]["token-0"]);
   const [toToken, setToToken] = useState<string>(pools[0]["token-1"]);
   const [fromAmount, setFromAmount] = useState<number>(0);
   const [estimatedToAmount, setEstimatedToAmount] = useState<bigint>(BigInt(0));
   const [fromBalance, setFromBalance] = useState<number | null>(null);
   const [toBalance, setToBalance] = useState<number | null>(null);
-  const [fromSupply, setFromSupply] = useState<number | null>(null);
-  const [toSupply, setToSupply] = useState<number | null>(null);
   const [disabledReason, setDisabledReason] = useState<string | null>(null);
   const [selectedPoolFee, setSelectedPoolFee] = useState<number | null>(null);
 
@@ -151,12 +149,6 @@ export function Swap({ pools }: SwapProps) {
   useEffect(() => {
     async function loadTokenInfo() {
       try {
-        const [fs, ts] = await Promise.all([
-          readTokenSupply(fromToken),
-          readTokenSupply(toToken),
-        ]);
-        setFromSupply(fs);
-        setToSupply(ts);
         if (userData) {
           const [fb, tb] = await Promise.all([
             readTokenBalance(fromToken),
@@ -169,7 +161,7 @@ export function Swap({ pools }: SwapProps) {
           setToBalance(null);
         }
       } catch (e) {
-        console.warn("Failed to read token info", e);
+        console.warn("Failed to read token balances", e);
       }
     }
     loadTokenInfo();
@@ -192,7 +184,7 @@ export function Swap({ pools }: SwapProps) {
             </option>
           ))}
         </select>
-        {/* Removed balance and supply labels */}
+       
       <input
         type="number"
         step="any"
@@ -228,9 +220,7 @@ export function Swap({ pools }: SwapProps) {
             </option>
           ))}
         </select>
-        {/* Removed balance and supply labels */}
       <span>Estimated Output: {estimatedToAmount.toString()}</span>
-      {/* Removed pool reserve/validation labels; keep faucet and estimated output */}
       <div className="flex items-center gap-2">
         <button
           className="bg-gray-200 hover:bg-gray-300 text-black font-medium py-1 px-2 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"

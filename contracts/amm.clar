@@ -1,15 +1,7 @@
-;; title: amm
-;; version:
-;; summary:
-;; description:
-
 ;; traits
 ;; traits
 (use-trait ft-trait 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.sip-010-trait)
-;;
 
-;; token definitions
-;;
 
 ;; constants
 ;;
@@ -175,8 +167,6 @@
         (asserts! (> new-liquidity u0) ERR_INSUFFICIENT_LIQUIDITY_MINTED)
 
         ;; transfer tokens from user to pool
-        ;; Important: for transfers FROM the user, do NOT use as-contract;
-        ;; the token's transfer gate expects tx-sender == sender (the user).
         (try! (contract-call? token-0 transfer amount-0 sender THIS_CONTRACT none))
         (try! (contract-call? token-1 transfer amount-1 sender THIS_CONTRACT none))
 
@@ -206,6 +196,7 @@
         (ok true)
     )
 )
+
 
 ;; remove-liquidity
 ;; Removes liquidity from a given pool

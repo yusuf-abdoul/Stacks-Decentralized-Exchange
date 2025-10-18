@@ -40,7 +40,7 @@
 		(recipient principal)
 	)
 	(begin
-		;; Permissionless faucet: allow any caller to mint to a recipient
+		
 		(ft-mint? mock-token amount recipient)
 	)
 )

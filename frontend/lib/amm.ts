@@ -85,21 +85,6 @@ export async function getTokenBalance(tokenContract: string, who: string): Promi
   return Number(uintVal ?? 0);
 }
 
-export async function getTokenSupply(tokenContract: string): Promise<number> {
-  const { address, name } = splitContractPrincipal(tokenContract);
-  const res = await callReadOnlyFunction({
-    contractAddress: address,
-    contractName: name,
-    functionName: "get-total-supply",
-    functionArgs: [],
-    senderAddress: AMM_CONTRACT_ADDRESS,
-    network,
-  });
-  const json = cvToJSON(res) as any;
-  const okVal = json?.type === "response-ok" || json?.type === "responseOk" ? json.value : json;
-  const uintVal = okVal?.type === "uint" ? okVal.value : getJsonInnerValue(okVal);
-  return Number(uintVal ?? 0);
-}
 
 // Get token decimals from SIP-010 mock-token
 export async function getTokenDecimals(tokenContract: string): Promise<number> {
@@ -409,9 +394,11 @@ async function getAllPoolsDirect(): Promise<Pool[]> {
     "ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-2",
     "ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-3",
     "ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-4",
+    "ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-5",
+    "ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM.mock-token-6",
   ];
 
-  const fees = [3, 5, 50, 300, 500, 1000, 3000, 10000]; // Include 0.05% (5 bps) and 0.5% (50 bps)
+  const fees = [500]; // Trimmed to common 0.5% fee for minimal fallback
 
   for (let i = 0; i < knownTokens.length; i++) {
     for (let j = i + 1; j < knownTokens.length; j++) {
@@ -652,11 +639,6 @@ export default {
   swap,
   getUserLiquidity,
 };
-// Helper: check if a string looks like hex (optionally with 0x prefix)
-function isHexId(id: string): boolean {
-  const s = (id || "").startsWith("0x") ? id.slice(2) : id;
-  return /^[0-9a-fA-F]+$/.test(s) && s.length > 0;
-}
 
 // Resolve a pool by token pair and fee using read-only contract calls
 async function resolvePoolByPair(token0In: string, token1In: string, fee: number): Promise<Pool | null> {

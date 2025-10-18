@@ -2,13 +2,13 @@ import { AddLiquidity } from "@/components/add-liquidity";
 import { CreatePool } from "@/components/create-pool";
 import { PoolsList } from "@/components/pools";
 import { RemoveLiquidity } from "@/components/remove-liquidity";
-import { getAllPools } from "@/lib/amm";
+import { getAllPools, Pool } from "@/lib/amm";
 
 export const dynamic = "force-dynamic";
 
 export default async function Pools() {
-  let allPools = [];
-  let error = null;
+  let allPools: Pool[] = [];
+  let error: string | null = null;
 
   try {
     allPools = await getAllPools();

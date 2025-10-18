@@ -1,6 +1,6 @@
 ---
 id: 0
-name: Testnet deployment
+name: Deploy mock-token-v2 with permissionless mint
 network: testnet
 stacks-node: "https://api.testnet.hiro.so"
 bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
@@ -8,36 +8,34 @@ plan:
   batches:
     - id: 0
       transactions:
+        # Ensure SIP-010 trait exists on testnet by publishing the requirement with remapped principals
         - requirement-publish:
             contract-id: SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard
             remap-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
             remap-principals:
               SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
             cost: 8400
-            path: ".\\.cache\\requirements\\SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
+            path: "./.cache/requirements/SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
             clarity-version: 1
-      epoch: "2.0"
-    - id: 1
-      transactions:
+        - contract-publish:
+            contract-name: mock-token-v2
+            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
+            path: contracts/mock-token.clar
+            anchor-block-only: false
+            cost: 12000
+            clarity-version: 3
         - contract-publish:
             contract-name: mock-token-5
             expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
-            cost: 11840
-            path: "contracts\\mock-token.clar"
-            anchor-block-only: true
+            cost: 13290
+            path: contracts/mock-token.clar
+            anchor-block-only: false
             clarity-version: 3
         - contract-publish:
             contract-name: mock-token-6
             expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
-            cost: 11840
-            path: "contracts\\mock-token.clar"
-            anchor-block-only: true
-            clarity-version: 3
-        - contract-publish:
-            contract-name: mock-token-v2
-            expected-sender: ST19JE8EPR84AJ8Z30B5ZB08WXTB6FC2SQHT4K9RM
-            cost: 11840
-            path: "contracts\\mock-token.clar"
-            anchor-block-only: true
+            cost: 13290
+            path: contracts/mock-token.clar
+            anchor-block-only: false
             clarity-version: 3
       epoch: "3.2"

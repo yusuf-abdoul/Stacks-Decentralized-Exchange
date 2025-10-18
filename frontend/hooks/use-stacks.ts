@@ -6,7 +6,6 @@ import {
   swap,
   mintToken,
   getTokenBalance,
-  getTokenSupply,
 } from "@/lib/amm";
 import {
   AppConfig,
@@ -17,7 +16,6 @@ import {
 } from "@stacks/connect";
 import { PostConditionMode } from "@stacks/transactions";
 import { useEffect, useState } from "react";
-import { connect } from "http2";
 
 const appDetails = {
   name: "Full Range AMM",
@@ -194,9 +192,6 @@ export function useStacks() {
     return await getTokenBalance(tokenContract, addr);
   }
 
-  async function readTokenSupply(tokenContract: string): Promise<number> {
-    return await getTokenSupply(tokenContract);
-  }
 
   useEffect(() => {
     async function initSession() {
@@ -227,6 +222,5 @@ export function useStacks() {
     handleRemoveLiquidity,
     handleMint,
     readTokenBalance,
-    readTokenSupply,
   };
 }
