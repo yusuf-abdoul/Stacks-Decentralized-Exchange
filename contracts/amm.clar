@@ -1,15 +1,7 @@
-;; title: amm
-;; version:
-;; summary:
-;; description:
-
 ;; traits
 ;; traits
 (use-trait ft-trait 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.sip-010-trait)
-;;
 
-;; token definitions
-;;
 
 ;; constants
 ;;
@@ -175,8 +167,8 @@
         (asserts! (> new-liquidity u0) ERR_INSUFFICIENT_LIQUIDITY_MINTED)
 
         ;; transfer tokens from user to pool
-        (try!  (contract-call? token-0 transfer amount-0 sender THIS_CONTRACT none))
-        (try!  (contract-call? token-1 transfer amount-1 sender THIS_CONTRACT none))
+        (try! (contract-call? token-0 transfer amount-0 sender THIS_CONTRACT none))
+        (try! (contract-call? token-1 transfer amount-1 sender THIS_CONTRACT none))
 
         ;; update the `positions` map with the new liquidity of the user (pre existing liquidity + new liquidity)
         (map-set positions {
@@ -204,6 +196,7 @@
         (ok true)
     )
 )
+
 
 ;; remove-liquidity
 ;; Removes liquidity from a given pool
@@ -343,10 +336,8 @@
             ERR_INSUFFICIENT_LIQUIDITY_FOR_SWAP
         )
 
-        ;; transfer input token from user to pool
-        (try! (contract-call? input-token transfer input-amount sender THIS_CONTRACT
-            none
-        ))
+        ;; transfer input token from user to pool (must be called by the user)
+        (try! (contract-call? input-token transfer input-amount sender THIS_CONTRACT none))
         ;; transfer output token from pool to user
         (try! (as-contract (contract-call? output-token transfer output-amount-sub-fees
             THIS_CONTRACT sender none

@@ -16,7 +16,7 @@ export function CreatePool() {
         <span className="font-bold">Token 0</span>
         <input
           type="text"
-          className="border-2 border-gray-500 rounded-lg px-4 py-2 text-white"
+          className="border-2 border-gray-500 rounded-lg px-4 py-2 bg-gray-100 text-black"
           placeholder="Token 0"
           value={token0}
           onChange={(e) => setToken0(e.target.value)}
@@ -26,7 +26,7 @@ export function CreatePool() {
         <span className="font-bold">Token 1</span>
         <input
           type="text"
-          className="border-2 border-gray-500 rounded-lg px-4 py-2 text-white"
+          className="border-2 border-gray-500 rounded-lg px-4 py-2 bg-gray-100 text-black"
           placeholder="Token 1"
           value={token1}
           onChange={(e) => setToken1(e.target.value)}
@@ -36,7 +36,7 @@ export function CreatePool() {
         <span className="font-bold">Fee</span>
         <input
           type="number"
-          className="border-2 border-gray-500 rounded-lg px-4 py-2 text-white"
+          className="border-2 border-gray-500 rounded-lg px-4 py-2 bg-gray-100 text-black"
           placeholder="Fee"
           max={10_000}
           min={0}

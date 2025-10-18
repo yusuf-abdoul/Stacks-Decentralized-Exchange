@@ -20,7 +20,7 @@ export function AddLiquidity({ pools }: AddLiquidityProps) {
       <div className="flex flex-col gap-1">
         <span className="font-bold">Pool ID</span>
         <select
-          className="border-2 border-gray-500 rounded-lg px-4 py-2 text-black"
+          className="border-2 border-gray-500 rounded-lg px-4 py-2 bg-gray-100 text-black"
           onChange={(e) => {
             const poolId = e.target.value;
             setSelectedPool(pools.find((pool) => pool.id === poolId)!);
@@ -39,10 +39,13 @@ export function AddLiquidity({ pools }: AddLiquidityProps) {
         </span>
         <input
           type="text"
-          className="border-2 border-gray-500 rounded-lg px-4 py-2 text-black"
+          className="border-2 border-gray-500 rounded-lg px-4 py-2 bg-gray-100 text-black"
           placeholder="Token 0"
           value={amount0}
-          onChange={(e) => setAmount0(parseInt(e.target.value))}
+          onChange={(e) => {
+            const v = parseFloat(e.target.value);
+            setAmount0(Number.isFinite(v) && v >= 0 ? v : 0);
+          }}
         />
       </div>
       <div className="flex flex-col gap-1">
@@ -51,10 +54,13 @@ export function AddLiquidity({ pools }: AddLiquidityProps) {
         </span>
         <input
           type="text"
-          className="border-2 border-gray-500 rounded-lg px-4 py-2 text-black"
+          className="border-2 border-gray-500 rounded-lg px-4 py-2 bg-gray-100 text-black"
           placeholder="Token 1"
           value={amount1}
-          onChange={(e) => setAmount1(parseInt(e.target.value))}
+          onChange={(e) => {
+            const v = parseFloat(e.target.value);
+            setAmount1(Number.isFinite(v) && v >= 0 ? v : 0);
+          }}
         />
       </div>
 

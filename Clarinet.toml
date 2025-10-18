@@ -8,11 +8,6 @@ cache_dir = './.cache'
 [[project.requirements]]
 contract_id = 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard'
 
-[contracts.amm]
-path = 'contracts/amm.clar'
-clarity_version = 3
-epoch = 'latest'
-
 [contracts.mock-token]
 path = 'contracts/mock-token.clar'
 clarity_version = 3
@@ -20,18 +15,43 @@ epoch = 'latest'
 
 [contracts.mock-token-2]
 path = 'contracts/mock-token.clar'
-clarity_version = 2
-epoch = 2.5
+clarity_version = 3
+epoch = 'latest'
 
 [contracts.mock-token-3]
 path = 'contracts/mock-token.clar'
-clarity_version = 2
-epoch = 2.5
+clarity_version = 3
+epoch = 'latest'
 
 [contracts.mock-token-4]
 path = 'contracts/mock-token.clar'
-clarity_version = 2
-epoch = 2.5
+clarity_version = 3
+epoch = 'latest'
+
+[contracts.amm]
+path = 'contracts/amm.clar'
+clarity_version = 3
+epoch = 'latest'
+
+[contracts.amm-v2]
+path = 'contracts/amm.clar'
+clarity_version = 3
+epoch = 'latest'
+
+[contracts.mock-token-v2]
+path = 'contracts/mock-token.clar'
+clarity_version = 3
+epoch = 'latest'
+
+[contracts.mock-token-5]
+path = 'contracts/mock-token.clar'
+clarity_version = 3
+epoch = 'latest'
+
+[contracts.mock-token-6]
+path = 'contracts/mock-token.clar'
+clarity_version = 3
+epoch = 'latest'
 
 [repl.analysis]
 passes = ['check_checker']

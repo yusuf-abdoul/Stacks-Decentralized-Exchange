@@ -12,8 +12,6 @@
 ;;
 
 ;; constants
-(define-constant contract-owner tx-sender)
-(define-constant err-owner-only (err u100))
 (define-constant err-not-token-owner (err u101))
 
 
@@ -36,7 +34,7 @@
 		(recipient principal)
 	)
 	(begin
-		(asserts! (is-eq tx-sender contract-owner) err-owner-only)
+		
 		(ft-mint? mock-token amount recipient)
 	)
 )
