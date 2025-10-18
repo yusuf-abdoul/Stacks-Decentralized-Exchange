@@ -13,13 +13,7 @@
 
 ;; constants
 (define-constant err-not-token-owner (err u101))
-;;
 
-;; data vars
-;;
-
-;; data maps
-;;
 
 ;; public functions
 (define-public (transfer
@@ -71,7 +65,3 @@
 	(ok none)
 )
 
-;;
-
-;; private functions
-;;
